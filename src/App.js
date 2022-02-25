@@ -1,24 +1,93 @@
-import logo from './logo.svg';
-import './App.css';
+import Split from "react-split";
+import "./App.css";
+import * as Showdown from "showdown";
+import Editor from "./components/Editor";
+import Sidebar from "./components/Sidebar";
+import { useState } from "react";
+import { nanoid } from "nanoid";
 
 function App() {
+  const [notes, setNotes] = useState([]);
+  const [currentNoteId, setCurrentNoteId] = useState(
+    (notes[0] && notes[0].id) || ""
+  );
+
+  //create note
+  const createNote = () => {
+    const newNote = {
+      id: nanoid(),
+      body: "Type your note.....",
+    };
+    setNotes((prevNotes) => [...prevNotes, newNote ]);
+    setCurrentNoteId(newNote.id);
+  };
+
+  //updateNote
+  function updateNote(text){
+        //setNotes
+        //map through notes array
+        //compare curentnoteid === note.id
+        //update new state object
+     setNotes( oldNotes => oldNotes.map( note => {
+       return note.id === currentNoteId ?
+          { ...note, body: text } : note
+     }))
+  }
+      
+  //findcurrentnote
+  function findCurrentNote() {
+    //find
+    //match id
+    //return note
+    return notes.find((note) => note.id === currentNoteId) || notes[0];
+  }
+
+
+  //setcurrentnote id when sidebar btn is clicked
+  //call the setCurrentId directly in the button at sidebar 
+
+  function deleteNote(){
+    setNotes( prevNotes => prevNotes.filter( note => {
+      return note !== currentNoteId
+    }))
+    // setCurrentNoteId()
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <main>
+      {notes.length > 0 ? (
+        <Split
+          className="split"
+          sizes={[25, 75]}
+          minSize={100}
+          expandToMin={false}
+          gutterSize={10}
+          gutterAlign="center"
+          snapOffset={30}
+          dragInterval={1}
+          direction="horizontal"
+          cursor="col-resize"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Sidebar
+            notes={notes}
+            findCurrentNote={findCurrentNote()}
+            createNote={createNote}
+            setCurrentNoteId={setCurrentNoteId}
+            deleteNote={deleteNote}
+            
+          />
+          <Editor updateNote={updateNote} findCurrentNote={findCurrentNote()} />
+        </Split>
+      ) : (
+        <div className="empty-notes">
+          <h1>No notes to display</h1>
+          <button className="empty-btn" onClick={createNote}>
+            {" "}
+            Create{" "}
+          </button>
+        </div>
+      )}
+    </main>
   );
 }
 

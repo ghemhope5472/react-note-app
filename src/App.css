@@ -1,38 +1,126 @@
-.App {
-  text-align: center;
+*{
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.split{
+  display: flex;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.gutter.gutter-horizontal {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.gutter.gutter-horizontal:hover {
+  cursor: col-resize;
+}
+
+.editor {
+  width: 80%;
+  height: 100vh;
+}
+
+h2{
+  margin: 0 auto;
+}
+
+.sidebar-container{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(235, 233, 231);
+
+}
+
+.notes-btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  outline: none;
+  border: none;
+  background-color: aliceblue;
+}
+
+
+
+.delete-icon:hover{
+  color: rgb(192, 56, 56);
+}
+
+
+.notes-btn:hover{
+  background-color: rgb(194, 196, 201);
+}
+
+.empty-notes{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  background-color: rgb(39, 38, 38);
+  color: floralwhite;
 }
 
-.App-link {
-  color: #61dafb;
+.empty-btn{
+  padding: 15px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  outline: none;
+  border: none;
+  background-color:rgb(230, 237, 243);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.empty-btn:hover{
+  background-color: rgb(216, 231, 245);
+}
+
+.mynotes{
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.mynotes > button{
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+
+.sidebar-add-btn{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: rgb(35, 207, 135);
+}
+.sidebar-add-btn:hover{
+  background-color: rgb(194, 196, 201);
+ 
+}
+
+.selected{
+  background-color: rgb(194, 196, 201);
+}
+
+@media screen and ( max-width:768px){
+  .mynotes{
+    flex-direction: column;
+    align-content: center;
   }
-  to {
-    transform: rotate(360deg);
+  .mynotes > h2{
+    text-align: center;
   }
 }
