@@ -90,6 +90,21 @@ useEffect( () => {
     //prevent an event in the parent element when the delete icon is clicked
     event.stopPropagation();
 
+    //USING REGULAR FOR LOOP
+    // setNotes( oldNotes => {
+    //   const newArray = []
+    //   for(var i =0; i < oldNotes.length; i++){
+    //       const oldNote = oldNotes[i];
+    //       if( oldNote.id === idToBeDeleted){
+    //           newArray.splice(i,1)
+    //       }else{
+    //         newArray.push(oldNote)
+    //       }
+    //   }
+    //   return newArray
+    // })
+
+    //USING FILTER METHOD
     // map to oldnotes and return array that the id that do not equal to idtobedeleted
     setNotes( oldNotes =>  oldNotes.filter( note => note.id != idToBeDeleted ))
   }
