@@ -39,14 +39,39 @@ useEffect( () => {
 
   //updateNote
   function updateNote(text){
-        //setNotes
-        //map through notes array
-        //compare curentnoteid === note.id
-        //update new state object
-     setNotes( oldNotes => oldNotes.map( note => {
-       return note.id === currentNoteId ?
-          { ...note, body: text } : note
-     }))
+    // REVISED FEBRUARY 28, 2022 @ 12:10 
+    //NEW FEATURE ( rearrange the array when a user edit a note, recent edited note will be on the top )
+      //steps 
+      setNotes( oldNotes =>{
+            //create empty array
+        const newArray = [];
+            //loop over original array
+        for(var i=0; i < oldNotes.length; i++){
+            const oldNote = oldNotes[i]
+            //if the id matches the currentnoteid
+            if( oldNote.id === currentNoteId ){
+                // put the updated note to the beginning of the array
+                newArray.unshift({ ...oldNote, body: text })
+            }else{
+                //else push the oldNote(no change)
+                // push the old notes to the end of the new array
+                newArray.push(oldNote)
+            }
+        }
+        //return new array
+        //this will return a new array
+        return newArray
+      })
+
+    //OLD CODE does not rearrange the order of notes array
+    //setNotes
+    //map through notes array
+    //compare curentnoteid === note.id
+    //update new state object
+    //  setNotes( oldNotes => oldNotes.map( note => {
+    //    return note.id === currentNoteId ?
+    //       { ...note, body: text } : note
+    //  }))
   }
       
   //findcurrentnote
