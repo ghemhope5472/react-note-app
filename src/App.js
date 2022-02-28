@@ -86,11 +86,12 @@ useEffect( () => {
   //setcurrentnote id when sidebar btn is clicked
   //call the setCurrentId directly in the button at sidebar 
 
-  function deleteNote(){
-    setNotes( prevNotes => prevNotes.filter( note => {
-      return note !== currentNoteId
-    }))
-    // setCurrentNoteId()
+  function deleteNote(event, idToBeDeleted){
+    //prevent an event in the parent element when the delete icon is clicked
+    event.stopPropagation();
+
+    // map to oldnotes and return array that the id that do not equal to idtobedeleted
+    setNotes( oldNotes =>  oldNotes.filter( note => note.id != idToBeDeleted ))
   }
 
   return (

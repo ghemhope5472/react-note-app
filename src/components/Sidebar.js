@@ -1,7 +1,8 @@
 import React from "react";
 import { MdLibraryAdd } from "react-icons/md";
 import { HiPlus } from "react-icons/hi";
-import { TiDelete } from "react-icons/ti";
+import { RiDeleteBin7Line } from "react-icons/ri";
+
 
 function Sidebar(props) {
   const noteElements = props.notes.map((note, index) => {
@@ -17,10 +18,10 @@ function Sidebar(props) {
       >
         {" "}
         { note.body.split('\n')[0] }
-        <TiDelete
-          size={35}
+        <RiDeleteBin7Line
+          size={20}
           className="delete-icon"
-          onClick={props.deleteNote}
+          onClick={(event) => props.deleteNote( event, note.id)}
         />{" "}
       </button>
     );

@@ -47,7 +47,7 @@ h2{
   padding: 15px 20px;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px;
+  margin: 2px 10px;
   outline: none;
   border: none;
   background-color: aliceblue;
@@ -55,13 +55,28 @@ h2{
 
 
 
-.delete-icon:hover{
+/* .delete-icon:hover{
   color: rgb(192, 56, 56);
-}
+} */
 
 
 .notes-btn:hover{
   background-color: rgb(194, 196, 201);
+}
+
+.delete-icon{
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notes-btn:hover > .delete-icon{
+  display: block;
+  
+}
+
+.delete-icon:hover{
+  color: rgb(192, 56, 56);
 }
 
 .empty-notes{
@@ -91,7 +106,7 @@ h2{
 .mynotes{
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin: 5px;
 }
 
 .mynotes > button{
@@ -115,6 +130,10 @@ h2{
   background-color: rgb(194, 196, 201);
 }
 
+
+
+
+
 @media screen and ( max-width:768px){
   .mynotes{
     flex-direction: column;
@@ -124,3 +143,5 @@ h2{
     text-align: center;
   }
 }
+
+
