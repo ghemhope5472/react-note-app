@@ -3,14 +3,26 @@ import "./App.css";
 import * as Showdown from "showdown";
 import Editor from "./components/Editor";
 import Sidebar from "./components/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  // added lazy loading on the notes state so it will not go the localstorage every re-render, it improve performnce of the app
+  const [notes, setNotes] = useState( () =>  JSON.parse(localStorage.getItem('notes')) || [] );
   const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ""
   );
+
+
+
+
+//use localStorate
+useEffect( () => {
+  localStorage.setItem('notes', JSON.stringify(notes))
+}, [ notes ])
+
+
+
 
   //create note
   const createNote = () => {
@@ -21,6 +33,9 @@ function App() {
     setNotes((prevNotes) => [...prevNotes, newNote ]);
     setCurrentNoteId(newNote.id);
   };
+
+
+
 
   //updateNote
   function updateNote(text){
